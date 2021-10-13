@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>add-recipe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="floating">NAME</ion-label>
+      <ion-input [(ngModel)]="NAME" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">INGREDIENTS</ion-label>
+      <ion-input [(ngModel)]="INGREDIENTS" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">INSTRUCTION</ion-label>
+      <ion-input [(ngModel)]="INSTRUCTION" type="text"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" (click)="ENREGISTRER()" color="primary" shape="full" expand="block">ENREGISTRER
+
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <ion-title>Copy-rigth 2021</ion-title>
+  </ion-toolbar>
+</ion-footer>
