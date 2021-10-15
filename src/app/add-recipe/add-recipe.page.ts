@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RecetteService } from '../recette.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Recipe } from '../list-recipe/recipe.model';
+import { RecipeServiceService } from '../list-recipe/recipe-service.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -7,29 +9,25 @@ import { RecetteService } from '../recette.service';
   styleUrls: ['./add-recipe.page.scss'],
 })
 export class AddRecipePage {
-  NAME: any;
-  INGREDIENTS: any;
-  INSTRUCTION: any;
-
+  recipeForm: FormGroup = this.fb.group({
+    nameInput: [[], Validators.required],
+    ingredientInput: [[], Validators.required],
+    instructionInput: [[], Validators.required],
+  });
   constructor(
-    public recetteservice: RecetteService
+    private fb: FormBuilder,
+    private recipeService: RecipeServiceService
   ) { }
+    addRecipe(): void{
+      if(this.recipeForm.valid){
+        const newRecipe: Recipe = {
+          name: this.recipeForm.get('nameInput').value,
+          ingredients: this.recipeForm.get('ingredientInput').value,
+          instruction: this.recipeForm.get('instructionInput').value,
+        };
 
-  ENREGISTRER(){
-    let data = {
-      NAME: this.NAME,
-      INGREDIENTS: this.INGREDIENTS,
-      INSTRUCTION: this.INSTRUCTION,
+        this.recipeService.saveRecipe(newRecipe);
+      }
     }
-    this.recetteservice.ENREGISTRER(data).subscribe((res:any) =>{
-       console.log("success ===",res);
-       this.NAME = '';
-       this.INGREDIENTS = '';
-       this.INSTRUCTION = '';
-       alert('SUCCESS');
-    },(error: any)=> {
-      alert('ERROR');
-      console.log("ERROR ===", error);
-    })
   }
-}
+

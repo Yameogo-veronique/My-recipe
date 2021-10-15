@@ -1,23 +1,37 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>list-recipe</ion-title>
+    <ion-icon NAME="add" slot="end" style="zoom:2" (click)="addRecipe()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card *ngFor='let recipe of recipesList' color="primary">
+<ion-card-header>
+  <ion-card-title>Name: {{recipe.name}}</ion-card-title>
+</ion-card-header>
+<ion-card-subtitle style="margin-left: 20px;"> INGREDIENTS: {{recipe.ingredients}}</ion-card-subtitle>
+<ion-card-content>Publishing INSTRUCTION {{recipe.instruction}}</ion-card-content>
+  </ion-card>
+
+
+
+
+
   <ion-row>
     <ion-col>
       <ion-button type="button" color="primary"  >MODIFY</ion-button>
-      <ion-button type="button" color="primary" >DELETE</ion-button>
+      <ion-button type="button" color="primary" (click)="delAll()">DELETE ALL</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
 
   <ion-footer>
     <ion-toolbar color="medium">
-      <ion-title>Copy-rigth 2021</ion-title>
+      <ion-title></ion-title>
     </ion-toolbar>
   </ion-footer>
